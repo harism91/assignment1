@@ -10,6 +10,15 @@
 #include <errno.h>
 #include "myshell.h"
 
+
+void INThandler(int);
+
+void INThandler(int sig) {
+  char c;
+  signal(sig, SIG_IGN);
+  exit(0);
+}
+
 /*
  * Initializes the shell process, in particular its signal handling,
  * so that when an keyboard interrupt signal (Ctrl-C) is received by
@@ -18,7 +27,7 @@
  */
 
 void initialize_signal_handling(void) {
-  
+  signal(SIGINT, INThandler);
   // if(process is running in the foreground)
   // else {
 
@@ -30,8 +39,7 @@ void initialize_signal_handling(void) {
  * to wait for them. If any processes finished, prints a message for
  * each finished process containing the PID of the process.
  */
-void print_finished_background_processes(void)
-{
+void print_finished_background_processes(void) {
 
   /* TO BE COMPLETED BY THE STUDENT */
 }
@@ -60,13 +68,7 @@ void print_finished_background_processes(void)
  *    too long.
  */
 
-int read_command_line(char *line)
-{
-  char string[COMMAND_LINE_MAX_SIZE];
-  fgets(string,COMMAND_LINE_MAX_SIZE,stdin);
-  printf("%s\n",string);
-  printf("%d, %ld", sizeof(line) >= COMMAND_LINE_MAX_SIZE, sizeof(line));
-
+int read_command_line(char *line) {
   if (sizeof(line) >= COMMAND_LINE_MAX_SIZE) {
     printf("Command line too long.\n");
     return 0;
