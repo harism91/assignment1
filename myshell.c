@@ -11,15 +11,27 @@
 #include "myshell.h"
 
 
+void INThandler(int);
+
+void INThandler(int sig) {
+  char c;
+  signal(sig, SIG_IGN);
+  exit(0);
+}
+
 /*
  * Initializes the shell process, in particular its signal handling,
  * so that when an keyboard interrupt signal (Ctrl-C) is received by
  * the shell, it is instead directed to the process currently running
  * in the foreground.
  */
-void initialize_signal_handling(void) {
 
-  /* TO BE COMPLETED BY THE STUDENT */
+void initialize_signal_handling(void) {
+  signal(SIGINT, INThandler);
+  // if(process is running in the foreground)
+  // else {
+
+  // }
 }
 
 /*
@@ -55,9 +67,14 @@ void print_finished_background_processes(void) {
  *    line could not be read due to a keyboard interrupt or for being
  *    too long.
  */
+
 int read_command_line(char *line) {
-  
-  /* TO BE COMPLETED BY THE STUDENT */
+  if (sizeof(line) >= COMMAND_LINE_MAX_SIZE)
+  {
+    printf("Command line too long.\n");
+    return 0;
+  }
+
   return 1;
 }
 
@@ -75,7 +92,6 @@ int read_command_line(char *line) {
  *    appropriate format.
  */
 void run_command_line(char *line) {
-
+  
   /* TO BE COMPLETED BY THE STUDENT */
-  //save
 }
