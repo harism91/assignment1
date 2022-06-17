@@ -65,7 +65,7 @@ int read_command_line(char *line)
   char string[COMMAND_LINE_MAX_SIZE];
   fgets(string,COMMAND_LINE_MAX_SIZE,stdin);
   printf("%s\n",string);
-  printf("%d, %ld", sizeof(line) >= COMMAND_LINE_MAX_SIZE, sizeof(line));
+  printf("%d, %ld\n", sizeof(line) >= COMMAND_LINE_MAX_SIZE, sizeof(line));
 
   if (sizeof(line) >= COMMAND_LINE_MAX_SIZE) {
     printf("Command line too long.\n");
