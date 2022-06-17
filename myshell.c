@@ -10,12 +10,25 @@
 #include <errno.h>
 #include "myshell.h"
 
+<<<<<<< HEAD
+=======
+
+void INThandler(int);
+
+void INThandler(int sig) {
+  char c;
+  signal(sig, SIG_IGN);
+  exit(0);
+}
+
+>>>>>>> 1f48dd97313e8e0d9ee72bef09cc3f8fdee67f59
 /*
  * Initializes the shell process, in particular its signal handling,
  * so that when an keyboard interrupt signal (Ctrl-C) is received by
  * the shell, it is instead directed to the process currently running
  * in the foreground.
  */
+<<<<<<< HEAD
 void INThandler(int);
 
 void initialize_signal_handling(void)
@@ -32,6 +45,15 @@ void INThandler(int sig)
 
   signal(sig, SIG_IGN);
   exit(0);
+=======
+
+void initialize_signal_handling(void) {
+  signal(SIGINT, INThandler);
+  // if(process is running in the foreground)
+  // else {
+
+  // }
+>>>>>>> 1f48dd97313e8e0d9ee72bef09cc3f8fdee67f59
 }
 
 /*
@@ -69,6 +91,7 @@ void print_finished_background_processes(void)
  *    too long.
  */
 
+<<<<<<< HEAD
 int read_command_line(char *line)
 {
 
@@ -77,6 +100,16 @@ int read_command_line(char *line)
     fgets(string,COMMAND_LINE_MAX_SIZE,stdin);        
     printf("\nThe string is: %s",string);
     return 0;
+=======
+int read_command_line(char *line) {
+  if (sizeof(line) >= COMMAND_LINE_MAX_SIZE)
+  {
+    printf("Command line too long.\n");
+    return 0;
+  }
+
+  return 1;
+>>>>>>> 1f48dd97313e8e0d9ee72bef09cc3f8fdee67f59
 }
 
 /*
@@ -92,6 +125,7 @@ int read_command_line(char *line)
  *    that this can be any string containing commands in an
  *    appropriate format.
  */
+<<<<<<< HEAD
 void run_command_line(char *line)
 {
   // char *token = strtok(line, "|");
@@ -126,3 +160,9 @@ void run_command_line(char *line)
 // THIS IS SPARTA
 
 // meow
+=======
+void run_command_line(char *line) {
+  
+  /* TO BE COMPLETED BY THE STUDENT */
+}
+>>>>>>> 1f48dd97313e8e0d9ee72bef09cc3f8fdee67f59
