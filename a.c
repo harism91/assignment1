@@ -62,12 +62,16 @@ void print_finished_background_processes(void)
 
 int read_command_line(char *line)
 {
-  char string[COMMAND_LINE_MAX_SIZE];
-  fgets(string,COMMAND_LINE_MAX_SIZE,stdin);
+  char string[COMMAND_LINE_MAX_SIZE+2];
+  fgets(string,COMMAND_LINE_MAX_SIZE+2,stdin);
+  printf("reading string:\n");
   printf("%s\n",string);
-  printf("%d, %ld\n", sizeof(line) >= COMMAND_LINE_MAX_SIZE, sizeof(line));
+  line = string;
+  int length = strlen(line);
+  printf("Name length: %u\n", length-1);
+  printf("%d, %ld\n", length >= COMMAND_LINE_MAX_SIZE+2, strlen(line));
 
-  if (sizeof(line) >= COMMAND_LINE_MAX_SIZE) {
+  if (length >= COMMAND_LINE_MAX_SIZE+2) {
     printf("Command line too long.\n");
     return 0;
   }

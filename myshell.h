@@ -1,6 +1,6 @@
 #pragma once
 
-#define COMMAND_LINE_MAX_SIZE 512
+#define COMMAND_LINE_MAX_SIZE 5
 
 void initialize_signal_handling(void);
 void print_finished_background_processes(void);
